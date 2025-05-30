@@ -7,16 +7,9 @@ F -> a set of state in q, and they mean's the final state
 
 the delta is a dictionary like:
 {
-    q0: {
-        symbol1: q1,
-        symbol2: q2
-    },
-    q1: {
-        symbol1: q2,
-        symbol2: q3
-    }
+    (state,symbol):  state,
 }
-It simulate to a transfer table.using by simulate the transfer function.
+It simulate to a transfer table.using by simulate the transfer function.In fact, it is a function that maps ordered pairs to a new state.
 you must define all possible transfer.
 '''
 class dfa:
@@ -29,7 +22,7 @@ class dfa:
     def run(self, input: list) -> bool:
         state = self.q0
         for symbol in input:
-            state = self.delta[state][symbol]
+            state = self.delta[(state,symbol)]
         if state in self.F:
             return True
         else:
